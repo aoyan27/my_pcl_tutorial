@@ -177,6 +177,7 @@ add_executable(example_fast_3d_ndt_kari src/example_fast_3d_ndt_kari.cpp)
 
 add_executable(example_voxel_grid src/example_voxel_grid.cpp)
 add_executable(example_pcd src/example_pcd.cpp)
+add_executable(example_clustering src/example_clustering.cpp)
 
 add_executable(example src/example.cpp)
 add_executable(example1 src/example1.cpp)
@@ -197,11 +198,14 @@ add_executable(example12_fast_ndt src/example12_fast_ndt.cpp)
 add_executable(example12_fast_ndt_ver2 src/example12_fast_ndt_ver2.cpp)
 add_executable(example12_fast_3d_ndt src/example12_fast_3d_ndt.cpp)
 add_executable(example12_fast_3d_ndt_for_vis src/example12_fast_3d_ndt_for_vis.cpp)
+
 add_executable(test1 src/test1.cpp)
+
 add_executable(sample_pub_odom src/sample_pub_odom.cpp)
 add_executable(sample_pub_odom2 src/sample_pub_odom2.cpp)
 add_executable(sample_pub_wp_mode src/sample_pub_wp_mode.cpp)
 add_executable(sample_pub_local_goal src/sample_pub_local_goal.cpp)
+
 
 add_executable(Dgauss_score src/Dgauss_score.cpp)
 add_executable(NDT_score src/NDT_score.cpp)
@@ -317,6 +321,10 @@ target_link_libraries(example_pcd
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
+target_link_libraries(example_clustering
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
 
 target_link_libraries(example
   ${catkin_LIBRARIES}
@@ -394,10 +402,12 @@ target_link_libraries(example12_fast_3d_ndt_for_vis
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
+
 target_link_libraries(test1
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
+
 target_link_libraries(sample_pub_odom
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
