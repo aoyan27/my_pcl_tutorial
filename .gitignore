@@ -1,0 +1,6 @@
+*.pdf
+*.gv
+*.cpp
+*.cpp~
+*.cam
+!/src/*.cpp
