@@ -12,6 +12,8 @@
 #include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/segmentation/extract_clusters.h>
 
+using namespace std;
+
 int main(int argc, char** argv)
 {
 	ros::init(argc, argv, "example_clustering");
@@ -20,7 +22,8 @@ int main(int argc, char** argv)
 	// Read in the cloud data
 	pcl::PCDReader reader;
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ>), cloud_f (new pcl::PointCloud<pcl::PointXYZ>);
-	reader.read ("/home/amsl/ros_catkin_ws/src/my_pcl_tutorial/sample_pcd/table_scene_lms400.pcd", *cloud);
+	// reader.read ("/home/amsl/ros_catkin_ws/src/my_pcl_tutorial/sample_pcd/table_scene_lms400.pcd", *cloud);
+	reader.read ("/home/amsl/ros_catkin_ws/src/my_pcl_tutorial/sample_pcd/test_velodyne.pcd", *cloud);
 	std::cout << "PointCloud before filtering has: " << cloud->points.size () << " data points." << std::endl; //*
 
 	// Create the filtering object: downsample the dataset using a leaf size of 1cm
@@ -41,10 +44,10 @@ int main(int argc, char** argv)
 	seg.setModelType (pcl::SACMODEL_PLANE);
 	seg.setMethodType (pcl::SAC_RANSAC);
 	seg.setMaxIterations (100);
-	seg.setDistanceThreshold (0.02);
+	seg.setDistanceThreshold (0.10);
 
 	int i=0, nr_points = (int) cloud_filtered->points.size ();
-	while (cloud_filtered->points.size () > 0.3 * nr_points)
+	while (cloud_filtered->points.size () > 0.2 * nr_points)
 	{
 		// Segment the largest planar component from the remaining cloud
 		seg.setInputCloud (cloud_filtered);
@@ -77,7 +80,7 @@ int main(int argc, char** argv)
 
 	std::vector<pcl::PointIndices> cluster_indices;
 	pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
-	ec.setClusterTolerance (0.02); // 2cm
+	ec.setClusterTolerance (0.2); // 2cm
 	ec.setMinClusterSize (100);
 	ec.setMaxClusterSize (25000);
 	ec.setSearchMethod (tree);
@@ -97,10 +100,11 @@ int main(int argc, char** argv)
 
 		std::cout << "PointCloud representing the Cluster: " << cloud_cluster->points.size () << " data points." << std::endl;
 		std::stringstream ss;
+		cout<<"cloud_cluster_"<<j<<".pcd"<<endl;
 		ss << "/home/amsl/ros_catkin_ws/src/my_pcl_tutorial/sample_pcd/cloud_cluster_" << j << ".pcd";
 		writer.write<pcl::PointXYZ> (ss.str (), *cloud_cluster, false); //*
 		j++;
-		}
+	}
 
 	return 0;
 }

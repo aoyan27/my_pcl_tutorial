@@ -178,6 +178,10 @@ add_executable(example_fast_3d_ndt_kari src/example_fast_3d_ndt_kari.cpp)
 add_executable(example_voxel_grid src/example_voxel_grid.cpp)
 add_executable(example_pcd src/example_pcd.cpp)
 add_executable(example_clustering src/example_clustering.cpp)
+add_executable(example_kdtree src/example_kdtree.cpp)
+add_executable(example_plane_segmentation src/example_plane_segmentation.cpp)
+add_executable(example_plane_segmentation2 src/example_plane_segmentation2.cpp)
+add_executable(example_extract_indices src/example_extract_indices.cpp)
 
 add_executable(example src/example.cpp)
 add_executable(example1 src/example1.cpp)
@@ -322,6 +326,22 @@ target_link_libraries(example_pcd
   ${PCL_LIBRARIES}
 )
 target_link_libraries(example_clustering
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+target_link_libraries(example_kdtree
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+target_link_libraries(example_plane_segmentation
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+target_link_libraries(example_plane_segmentation2
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+target_link_libraries(example_extract_indices
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
