@@ -182,6 +182,9 @@ add_executable(example_kdtree src/example_kdtree.cpp)
 add_executable(example_plane_segmentation src/example_plane_segmentation.cpp)
 add_executable(example_plane_segmentation2 src/example_plane_segmentation2.cpp)
 add_executable(example_extract_indices src/example_extract_indices.cpp)
+add_executable(example_statistical_outlier_removal src/example_statistical_outlier_removal.cpp)
+add_executable(example_area_calculation src/example_area_calculation.cpp)
+
 
 add_executable(example src/example.cpp)
 add_executable(example1 src/example1.cpp)
@@ -345,6 +348,15 @@ target_link_libraries(example_extract_indices
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
 )
+target_link_libraries(example_statistical_outlier_removal
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+target_link_libraries(example_area_calculation
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+)
+
 
 target_link_libraries(example
   ${catkin_LIBRARIES}
